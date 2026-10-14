@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omnifood — Healthy meals delivered</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#">Omnifood</a>
+
+    <nav class="main-nav">
+      <a href="#how">How it works</a>
+      <a href="#meals">Meals</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#pricing">Pricing</a>
+      <a class="nav-cta" href="#start">Try for free</a>
+      <button class="language-toggle" id="language-toggle" type="button">🌐 عربي</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>A healthy meal delivered to your door, every single day</h1>
+        <p>
+          The smart 365-days-per-year food subscription that makes you eat
+          healthy again. Tailored to your personal tastes and nutritional needs.
+        </p>
+        <a class="button" href="#start">Start eating well</a>
+      </div>
+    </section>
+
+    <section class="section-how" id="how">
+      <h2>Get your meal in 3 simple steps</h2>
+
+      <div class="steps">
+        <article class="step">
+          <h3>1. Choose your meals</h3>
+          <p>Pick the meals you enjoy from our weekly menu.</p>
+        </article>
+
+        <article class="step">
+          <h3>2. Receive your meals</h3>
+          <p>We deliver fresh meals right to your door.</p>
+        </article>
+
+        <article class="step">
+          <h3>3. Enjoy healthy food</h3>
+          <p>Enjoy delicious meals made for your needs.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script>
+  const languageButton = document.querySelector("#language-toggle");
+  let currentLanguage = "en";
+
+  const translations = {
+    en: {
+      logo: "Omnifood",
+      nav: ["How it works", "Meals", "Testimonials", "Pricing", "Try for free"],
+      heading: "A healthy meal delivered to your door, every single day",
+      description:
+        "The smart 365-days-per-year food subscription that makes you eat healthy again. Tailored to your personal tastes and nutritional needs.",
+      heroButton: "Start eating well",
+      howTitle: "Get your meal in 3 simple steps",
+      stepTitles: [
+        "1. Choose your meals",
+        "2. Receive your meals",
+        "3. Enjoy healthy food"
+      ],
+      stepDescriptions: [
+        "Pick the meals you enjoy from our weekly menu.",
+        "We deliver fresh meals right to your door.",
+        "Enjoy delicious meals made for your needs."
+      ]
+    },
+    ar: {
+      logo: "أومنيفود",
+      nav: ["كيف يعمل؟", "الوجبات", "آراء العملاء", "الأسعار", "جرّبي مجانًا"],
+      heading: "وجبة صحية تصلك إلى باب منزلك كل يوم",
+      description:
+        "اشتراك وجبات ذكي على مدار العام يساعدك على تناول طعام صحي، ومصمم ليناسب ذوقك واحتياجاتك الغذائية.",
+      heroButton: "ابدئي الأكل الصحي",
+      howTitle: "تصلك وجبتك في 3 خطوات بسيطة",
+      stepTitles: [
+        "١. اختاري وجباتك",
+        "٢. استلمي وجباتك",
+        "٣. استمتعي بطعام صحي"
+      ],
+      stepDescriptions: [
+        "اختاري الوجبات التي تحبينها من قائمتنا الأسبوعية.",
+        "نوصل وجبات طازجة إلى باب منزلك.",
+        "استمتعي بوجبات لذيذة تناسب احتياجاتك."
+      ]
+    }
+  };
+
+  languageButton.addEventListener("click", () => {
+    currentLanguage = currentLanguage === "en" ? "ar" : "en";
+    const text = translations[currentLanguage];
+
+    document.documentElement.lang = currentLanguage;
+    document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
+
+    document.querySelector(".logo").textContent = text.logo;
+
+    document.querySelectorAll(".main-nav a").forEach((link, index) => {
+      link.textContent = text.nav[index];
+    });
+
+    document.querySelector(".hero h1").textContent = text.heading;
+    document.querySelector(".hero p").textContent = text.description;
+    document.querySelector(".hero .button").textContent = text.heroButton;
+    document.querySelector(".section-how h2").textContent = text.howTitle;
+
+    document.querySelectorAll(".step h3").forEach((item, index) => {
+      item.textContent = text.stepTitles[index];
+    });
+
+    document.querySelectorAll(".step p").forEach((item, index) => {
+      item.textContent = text.stepDescriptions[index];
+    });
+
+    languageButton.textContent =
+      currentLanguage === "en" ? "🌐 عربي" : "🌐 English";
+  });
+</script>
+</body>
+</html>
