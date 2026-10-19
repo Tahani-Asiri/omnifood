@@ -23,10 +23,9 @@
   <main>
     <section class="hero">
       <div class="hero-text">
-        <h1>A healthy meal delivered to your door, every single day</h1>
+        <h1>Your week, served fresh.</h1>
         <p>
-          The smart 365-days-per-year food subscription that makes you eat
-          healthy again. Tailored to your personal tastes and nutritional needs.
+          Choose meals that fit your taste and routine. We’ll prepare them fresh and deliver them right to your door.
         </p>
         <a class="button" href="#start">Start eating well</a>
       </div>
@@ -57,46 +56,47 @@
   const languageButton = document.querySelector("#language-toggle");
   let currentLanguage = "en";
 
-  const translations = {
-    en: {
-      logo: "Omnifood",
-      nav: ["How it works", "Meals", "Testimonials", "Pricing", "Try for free"],
-      heading: "A healthy meal delivered to your door, every single day",
-      description:
-        "The smart 365-days-per-year food subscription that makes you eat healthy again. Tailored to your personal tastes and nutritional needs.",
-      heroButton: "Start eating well",
-      howTitle: "Get your meal in 3 simple steps",
-      stepTitles: [
-        "1. Choose your meals",
-        "2. Receive your meals",
-        "3. Enjoy healthy food"
-      ],
-      stepDescriptions: [
-        "Pick the meals you enjoy from our weekly menu.",
-        "We deliver fresh meals right to your door.",
-        "Enjoy delicious meals made for your needs."
-      ]
-    },
-    ar: {
-      logo: "أومنيفود",
-      nav: ["كيف يعمل؟", "الوجبات", "آراء العملاء", "الأسعار", "جرّبي مجانًا"],
-      heading: "وجبة صحية تصلك إلى باب منزلك كل يوم",
-      description:
-        "اشتراك وجبات ذكي على مدار العام يساعدك على تناول طعام صحي، ومصمم ليناسب ذوقك واحتياجاتك الغذائية.",
-      heroButton: "ابدئي الأكل الصحي",
-      howTitle: "تصلك وجبتك في 3 خطوات بسيطة",
-      stepTitles: [
-        "١. اختاري وجباتك",
-        "٢. استلمي وجباتك",
-        "٣. استمتعي بطعام صحي"
-      ],
-      stepDescriptions: [
-        "اختاري الوجبات التي تحبينها من قائمتنا الأسبوعية.",
-        "نوصل وجبات طازجة إلى باب منزلك.",
-        "استمتعي بوجبات لذيذة تناسب احتياجاتك."
-      ]
-    }
-  };
+ const translations = {
+  en: {
+    logo: "Omnifood",
+    nav: ["How it works", "Meals", "Testimonials", "Pricing", "Try for free"],
+    heading: "Your week, served fresh.",
+    description:
+      "Choose meals that fit your taste and routine. We’ll prepare them fresh and deliver them right to your door.",
+    heroButton: "Explore this week’s menu",
+    howItTitle: "How it works",
+    stepTitles: [
+      "1. Choose your meals",
+      "2. Receive your meals",
+      "3. Enjoy healthy food"
+    ],
+    stepDescriptions: [
+      "Pick the meals you enjoy from our weekly menu.",
+      "We deliver fresh meals right to your door.",
+      "Enjoy delicious meals made for your needs."
+    ]
+  },
+
+  ar: {
+    logo: "أومنيفود",
+    nav: ["كيف يعمل", "الوجبات", "آراء العملاء", "الأسعار", "جربي مجانًا"],
+    heading: "أسبوعك ألذ مع وجبات طازجة",
+    description:
+      "اختاري وجبات تناسب ذوقك وروتينك، ونحضّرها طازجة ونوصلها إلى بابك.",
+    heroButton: "اكتشفي قائمة هذا الأسبوع",
+    howItTitle: "كيف يعمل",
+    stepTitles: [
+      "1. اختاري وجباتك",
+      "2. استلمي وجباتك",
+      "3. استمتعي بطعام صحي"
+    ],
+    stepDescriptions: [
+      "اختاري الوجبات التي تحبينها من قائمتنا الأسبوعية.",
+      "نوصل وجبات طازجة إلى باب منزلك.",
+      "استمتعي بوجبات لذيذة تناسب احتياجاتك."
+    ]
+  }
+};
 
   languageButton.addEventListener("click", () => {
     currentLanguage = currentLanguage === "en" ? "ar" : "en";
