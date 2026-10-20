@@ -15,10 +15,16 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  background: #fff;
+  background: transparent;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 10;
 }
 
 .logo {
+  font-family: "Trebuchet MS", sans-serif;
   color: #e67e22;
   font-size: 26px;
   font-weight: bold;
@@ -32,7 +38,7 @@ body {
 }
 
 .main-nav a {
-  color: #333;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -48,8 +54,8 @@ body {
 }
 
 .hero {
-  min-height: 560px;
-  padding: 80px 8%;
+ min-height: 100vh;
+padding: 150px 8% 80px;
   display: flex;
   align-items: center;
   background-image:
@@ -117,7 +123,7 @@ body {
 
 .step p {
   margin: 0;
-  color: #555;
+  color: #514e4e;
   line-height: 1.6;
 }
 
@@ -161,4 +167,224 @@ html[dir="rtl"] .hero {
       rgba(0, 0, 0, 0.08) 100%
     ),
     url("food.png");
+}
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.header .logo {
+  position: absolute;
+  top: 20px;
+  left: 8%;
+}
+
+.header .logo img {
+  display: block;
+  width: 130px;
+  height: auto;
+}
+.nav-panel {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 8%;
+  z-index: 20;
+  width: min(300px, calc(100vw - 32px));
+  padding: 22px;
+  background: rgba(35, 37, 40, 0.96);
+  border-radius: 14px;
+}
+
+.nav-panel.is-open {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nav-panel .main-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-panel .main-nav a {
+  color:#b46126;
+  text-decoration: none;
+}
+
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: absolute;
+  top: 20px;
+  right: 8%;
+  z-index: 30;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: #b46126;
+  border-radius: 3px;
+}
+.nav-panel .main-nav a {
+  font-weight: bold;
+}
+.nav-panel .nav-cta,
+.nav-panel .language-toggle {
+  font-weight: bold;
+}
+.nav-panel .nav-cta {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  background: #e67e22;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.nav-panel .language-toggle {
+  width: auto;
+  align-self: center;
+  padding: 6px 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #fff;
+}
+.hero-text {
+  max-width: 650px;
+}
+
+.hero h1 {
+  max-width: 500px;
+  font-size: 3rem;
+  line-height: 1.1;
+}
+
+.hero-text p {
+  max-width: 600px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.hero-text p {
+  max-width: 520px;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.step {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  text-align: start;
+}
+
+.step h3 {
+  color: #666;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.step p {
+  color: #777;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+.step-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+  fill: none;
+  stroke: #e67e22;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.step,
+.button,
+.nav-cta,
+.menu-toggle,
+.logo,
+.main-nav a,
+.language-toggle {
+  transition: transform 0.25s ease;
+}
+
+.step:hover,
+.button:hover,
+.nav-cta:hover,
+.menu-toggle:hover,
+.logo:hover,
+.main-nav a:hover,
+.language-toggle:hover {
+  transform: translateY(-3px);
+}
+
+.step-icon {
+  transition: transform 0.25s ease;
+}
+
+.step:hover .step-icon {
+  transform: scale(1.08);
+}
+.nav-panel .menu-signup,
+.nav-panel .menu-login {
+  display: block;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+.hero {
+  position: relative;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+}
+
+.hero {
+  direction: ltr;
+}
+
+.hero-text {
+  text-align: left;
+}
+
+html[dir="rtl"] .hero-text {
+  direction: rtl;
+  text-align: right;
+}
+.hero-text {
+  transform: translateX(-40px);
 }
