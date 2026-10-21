@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Omnifood — Healthy meals delivered</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -50,8 +51,10 @@
     </section>
 
     <section class="section-how" id="how">
-      <h2>Get your meal in 3 simple steps</h2>
-
+      <div class="section-title">
+  <img src="logo-white.png" alt="" class="section-title-logo">
+  <h2>Get your meal in 3 simple steps</h2>
+</div>
       <div class="steps">
   <article class="step">
     <svg class="step-icon" viewBox="0 0 48 48" aria-hidden="true">
@@ -81,6 +84,32 @@
   </article>
       </div>
     </section>
+    <section class="section-meals" id="meals">
+  <div class="meals-heading">
+  <img src="logo-white.png" alt="" class="meals-logo">
+  <h2>Our popular meals</h2>
+</div>
+
+  <div class="meals-grid">
+    <article class="meal-card">
+      <img
+        src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        alt="Healthy bowl with vegetables"
+      >
+      <h3>Fresh garden salad</h3>
+      <p>A fresh salad with vegetables and chickpeas.</p>
+    </article>
+
+    <article class="meal-card">
+      <img
+        src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80"
+        alt="Fresh salad bowl"
+      >
+      <h3>Healthy chicken bowl</h3>
+      <p>Chicken with fresh vegetables and rice.</p>
+    </article>
+  </div>
+</section>
   </main>
   <script>
   const languageButton = document.querySelector("#language-toggle");
@@ -186,6 +215,48 @@ document.addEventListener("click", (event) => {
     menuButton.setAttribute("aria-expanded", "false");
   }
 });
+document.querySelector("#language-toggle").addEventListener("click", () => {
+  const isArabic = currentLanguage === "ar";
+
+  document.querySelector(".meals-heading h2").textContent = isArabic
+    ? "وجباتنا الأكثر شهرة"
+    : "Our popular meals";
+
+  const mealTitles = isArabic
+    ? ["سلطة الحديقة الطازجة", "وعاء الدجاج الصحي"]
+    : ["Fresh garden salad", "Healthy chicken bowl"];
+
+  const mealDescriptions = isArabic
+    ? [
+        "سلطة طازجة بالخضروات والحمص.",
+        "دجاج مع خضروات طازجة وأرز."
+      ]
+    : [
+        "A fresh salad with vegetables and chickpeas.",
+        "Chicken with fresh vegetables and rice."
+      ];
+
+  document.querySelectorAll(".meal-card h3").forEach((title, index) => {
+    if (mealTitles[index]) title.textContent = mealTitles[index];
+  });
+
+  document.querySelectorAll(".meal-card p").forEach((description, index) => {
+    if (mealDescriptions[index]) {
+      description.textContent = mealDescriptions[index];
+    }
+  });
+});
+document
+  .querySelectorAll('.main-nav a[href="#how"], .main-nav a[href="#meals"]')
+  .forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const section = document.querySelector(link.getAttribute("href"));
+      section.classList.toggle("is-open");
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
 </script>
 </body>
 </html>
