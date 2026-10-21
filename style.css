@@ -80,6 +80,7 @@ padding: 150px 8% 80px;
   margin: 0 0 22px;
   font-size: clamp(38px, 5vw, 58px);
   line-height: 1.08;
+  font-family: "Playfair Display", Georgia, serif;
 }
 
 .hero p {
@@ -142,10 +143,43 @@ padding: 150px 8% 80px;
     grid-template-columns: 1fr;
   }
 
-  .hero {
-    min-height: 500px;
+  .header {
+    flex-direction: column;
   }
-}
+  header.header a.logo img {
+    width: 80px;
+    max-width: 100%;
+    height: auto;
+    }
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 100vh;
+    padding: 160px 20px 40px;
+    align-items: flex-start;
+    background-position: center;
+  }
+
+  .hero-text {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding-inline: 16px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 8vw, 36px);
+  }
 
 .language-toggle {
   padding: 10px 12px;
@@ -385,6 +419,207 @@ html[dir="rtl"] .hero-text {
   direction: rtl;
   text-align: right;
 }
-.hero-text {
-  transform: translateX(-40px);
+
+@media (max-width: 800px) {
+  .hero {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .hero h1 {
+    font-size: clamp(24px, 6.5vw, 30px);
+  }
+
+  .hero p {
+    font-size: 15px;
+    line-height: 1.6;
+    
+  }
+    .header .logo img {
+    width: 50px;
+  }
+    .hero .button {
+    display: inline-block;
+    width: auto;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+    .nav-panel {
+    width: min(280px, calc(100vw - 32px));
+    padding: 16px;
+  }
+
+  .nav-panel .main-nav {
+    gap: 10px;
+  }
+
+  .nav-panel .main-nav a,
+  .nav-panel .nav-cta {
+    font-size: 15px;
+    padding: 9px 12px;
+  }
+}
+.section-meals {
+  padding: 64px 24px;
+}
+
+.meals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.meal-card img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: #f5f5f5;
+  border-radius: 12px;
+}
+
+.meal-card {
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+@media (max-width: 800px) {
+  .meals-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.section-meals {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+    url("food.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.meals-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transform: translateY(-10px);
+}
+
+.meals-heading h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.meals-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.meal-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.meal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.meals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 280px));
+  justify-content: center;
+  gap: 24px;
+  max-width: 620px;
+  margin-inline: auto;
+}
+@media (max-width: 600px) {
+  .meals-grid {
+    grid-template-columns: minmax(0, 320px);
+    gap: 18px;
+  }
+}
+.meal-card {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  min-height: 0;
+  padding: 16px;
+}
+
+.meal-card img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  margin-bottom: 12px;
+  object-fit: contain;
+}
+.section-title,
+.meals-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.section-title h2,
+.meals-heading h2 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.section-title-logo,
+.meals-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.section-title:hover .section-title-logo,
+.meals-heading:hover .meals-logo {
+  transform: scale(1.08);
+}
+.section-title,
+.meals-heading {
+  transition: transform 0.25s ease;
+}
+
+.section-title:hover,
+.meals-heading:hover {
+  transform: translateY(-3px);
+}
+.section-meals {
+  padding-top: 32px;
+}
+.section-how .steps,
+.section-meals .meals-grid {
+  display: none;
+}
+
+.section-how.is-open .steps,
+.section-meals.is-open .meals-grid {
+  display: grid;
+}
+.section-how {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)),
+    url("how-it-works.png") center / cover no-repeat;
+  border-radius: 20px;
+}
+@media (max-width: 800px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .step {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .meals-grid {
+    grid-template-columns: minmax(0, 320px);
+    justify-content: center;
+  }
 }
