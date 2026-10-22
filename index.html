@@ -110,7 +110,99 @@
     </article>
   </div>
 </section>
+<section class="section-testimonials" id="testimonials">
+  <div class="section-title">
+    <img src="logo-white.png" alt="" class="section-title-logo">
+    <h2 id="reviews-title">Sample testimonials</h2>
+  </div>
+
+  <div class="testimonials-content">
+    <p id="reviews-note">
+      Fictional reviews for this student project.
+    </p>
+
+    <div class="testimonials-grid">
+      <article class="review-card">
+        <span class="review-avatar" aria-hidden="true">S</span>
+        <h3 id="review-name-1">Sara — fictional customer</h3>
+        <p id="review-text-1">
+          Choosing a healthy meal was simple and convenient.
+        </p>
+      </article>
+
+      <article class="review-card">
+        <span class="review-avatar" aria-hidden="true">N</span>
+        <h3 id="review-name-2">Noura — fictional customer</h3>
+        <p id="review-text-2">
+          I liked the variety of meals and the clear menu.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section-pricing" id="pricing">
+  <div class="section-title">
+    <img src="logo-white.png" alt="" class="section-title-logo">
+    <h2 id="pricing-title">Sample prices</h2>
+  </div>
+
+  <div class="pricing-content">
+    <p id="pricing-note">Demo prices for this student project.</p>
+
+    <div class="pricing-list">
+      <article class="price-row">
+        <img class="price-photo" alt="Fresh garden salad">
+
+        <h3 id="price-name-1">Fresh garden salad</h3>
+
+        <span class="price-value" dir="ltr">
+          <img src="saudi-riyal.svg"
+               alt="ريال سعودي" class="riyal-icon">
+          <span>25</span>
+        </span>
+      </article>
+
+      <article class="price-row">
+        <img class="price-photo" alt="Healthy chicken bowl">
+
+        <h3 id="price-name-2">Healthy chicken bowl</h3>
+
+        <span class="price-value" dir="ltr">
+          <img src="saudi-riyal.svg"
+               alt="ريال سعودي" class="riyal-icon">
+          <span>35</span>
+        </span>
+      </article>
+    </div>
+  </div>
+</section>
   </main>
+  <dialog class="trial-dialog" id="trial-dialog"
+        aria-labelledby="trial-title">
+  <button type="button" id="trial-close"
+          class="trial-close" aria-label="Close">×</button>
+
+  <h2 id="trial-title">Try a meal for free</h2>
+  <p id="trial-note">Demo form — no real order will be placed.</p>
+
+  <form id="trial-form">
+    <label for="trial-name" id="trial-name-label">Full name</label>
+    <input id="trial-name" type="text" autocomplete="name" required>
+
+    <label for="trial-email" id="trial-email-label">Email</label>
+    <input id="trial-email" type="email" autocomplete="email" required>
+
+    <label for="trial-meal" id="trial-meal-label">Choose a meal</label>
+    <select id="trial-meal" required>
+      <option value="">Choose a meal</option>
+      <option value="salad">Fresh garden salad</option>
+      <option value="chicken">Healthy chicken bowl</option>
+    </select>
+
+    <button type="submit" id="trial-submit">Try now</button>
+    <p id="trial-message" role="status"></p>
+  </form>
+</dialog>
   <script>
   const languageButton = document.querySelector("#language-toggle");
   let currentLanguage = "en";
@@ -257,6 +349,162 @@ document
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
+  const trialDialog = document.querySelector("#trial-dialog");
+const trialForm = document.querySelector("#trial-form");
+
+document.querySelector(".menu-try").addEventListener("click", (event) => {
+  event.preventDefault();
+
+  const arabic = currentLanguage === "ar";
+  trialDialog.dir = arabic ? "rtl" : "ltr";
+
+  const trialText = {
+    "trial-title": arabic
+      ? "جرّبي وجبة مجانًا"
+      : "Try a meal for free",
+
+    "trial-note": arabic
+      ? "نموذج تجريبي — لن يتم إرسال طلب وجبة فعلي."
+      : "Demo form — no real order will be placed.",
+
+    "trial-name-label": arabic ? "الاسم الكامل" : "Full name",
+    "trial-email-label": arabic ? "البريد الإلكتروني" : "Email",
+    "trial-meal-label": arabic ? "اختاري وجبتك" : "Choose a meal",
+    "trial-submit": arabic ? "جرّبي الآن" : "Try now"
+  };
+
+  Object.entries(trialText).forEach(([id, text]) => {
+    document.getElementById(id).textContent = text;
+  });
+
+  const options = document.querySelector("#trial-meal").options;
+
+  options[0].textContent = arabic ? "اختاري وجبة" : "Choose a meal";
+  options[1].textContent = arabic
+    ? "سلطة الحديقة الطازجة"
+    : "Fresh garden salad";
+  options[2].textContent = arabic
+    ? "وعاء الدجاج الصحي"
+    : "Healthy chicken bowl";
+
+  document.querySelector("#trial-close").setAttribute(
+    "aria-label", arabic ? "إغلاق" : "Close"
+  );
+
+  document.querySelector("#trial-message").textContent = "";
+  trialDialog.showModal();
+});
+
+document.querySelector("#trial-close").addEventListener("click", () => {
+  trialDialog.close();
+});
+
+trialForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  document.querySelector("#trial-message").textContent =
+    currentLanguage === "ar"
+      ? "تمت تجربة النموذج بنجاح. لم يُرسل طلب فعلي."
+      : "Demo completed successfully. No real order was sent.";
+
+  trialForm.reset();
+});
+function updateDemoReviews() {
+  const arabic = currentLanguage === "ar";
+
+  const reviewText = {
+    "reviews-title": arabic
+      ? "آراء تجريبية"
+      : "Sample testimonials",
+
+    "reviews-note": arabic
+      ? "أسماء وآراء خيالية لأغراض هذا المشروع الدراسي."
+      : "Fictional reviews for this student project.",
+
+    "review-name-1": arabic
+      ? "سارة — شخصية خيالية"
+      : "Sara — fictional customer",
+
+    "review-text-1": arabic
+      ? "اختيار الوجبة الصحية كان سهلًا ومريحًا."
+      : "Choosing a healthy meal was simple and convenient.",
+
+    "review-name-2": arabic
+      ? "نورة — شخصية خيالية"
+      : "Noura — fictional customer",
+
+    "review-text-2": arabic
+      ? "أعجبني تنوع الوجبات ووضوح القائمة."
+      : "I liked the variety of meals and the clear menu."
+  };
+
+  Object.entries(reviewText).forEach(([id, text]) => {
+    document.getElementById(id).textContent = text;
+  });
+}
+
+document
+  .querySelector('.main-nav a[href="#testimonials"]')
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+
+    updateDemoReviews();
+
+    const section = document.querySelector("#testimonials");
+    section.classList.toggle("is-open");
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+document
+  .querySelector("#language-toggle")
+  .addEventListener("click", updateDemoReviews);
+const mealPhotos = document.querySelectorAll(".meal-card img");
+
+document.querySelectorAll(".price-photo").forEach((photo, index) => {
+  if (mealPhotos[index]) {
+    photo.src = mealPhotos[index].src;
+    photo.alt = mealPhotos[index].alt;
+  }
+});
+
+function updateDemoPrices() {
+  const arabic = currentLanguage === "ar";
+
+  const pricingText = {
+    "pricing-title": arabic ? "أسعار تجريبية" : "Sample prices",
+
+    "pricing-note": arabic
+      ? "أسعار تجريبية لأغراض المشروع الدراسي."
+      : "Demo prices for this student project.",
+
+    "price-name-1": arabic
+      ? "سلطة الحديقة الطازجة"
+      : "Fresh garden salad",
+
+    "price-name-2": arabic
+      ? "وعاء الدجاج الصحي"
+      : "Healthy chicken bowl"
+  };
+
+  Object.entries(pricingText).forEach(([id, text]) => {
+    document.getElementById(id).textContent = text;
+  });
+}
+
+document
+  .querySelector('.main-nav a[href="#pricing"]')
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+    updateDemoPrices();
+
+    const section = document.querySelector("#pricing");
+    section.classList.toggle("is-open");
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+document
+  .querySelector("#language-toggle")
+  .addEventListener("click", updateDemoPrices);
 </script>
 </body>
 </html>
