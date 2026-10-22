@@ -30,7 +30,6 @@
       <a href="#testimonials">Testimonials</a>
       <a href="#pricing">Pricing</a>
     </nav>
-    <a class="nav-cta menu-try" href="#start">Try for free</a>
     <a class="nav-cta menu-auth" href="#signup">Sign up / Log in</a>
 
     <button class="language-toggle" id="language-toggle" type="button">
@@ -203,6 +202,38 @@
     <p id="trial-message" role="status"></p>
   </form>
 </dialog>
+<dialog class="trial-dialog" id="auth-dialog"
+        aria-labelledby="auth-title">
+  <button type="button" class="trial-close"
+          id="auth-close" aria-label="Close">×</button>
+
+  <div class="auth-tabs">
+    <button type="button" id="auth-signup-tab">Sign up</button>
+    <button type="button" id="auth-login-tab">Log in</button>
+  </div>
+
+  <h2 id="auth-title">Demo sign up</h2>
+  <p id="auth-note"></p>
+
+  <form class="auth-form" id="auth-form">
+    <div id="auth-name-group">
+      <label for="auth-name" id="auth-name-label">Full name</label>
+      <input id="auth-name" type="text"
+             autocomplete="name" required>
+    </div>
+
+    <label for="auth-email" id="auth-email-label">Email</label>
+    <input id="auth-email" type="email"
+           autocomplete="email" required>
+
+    <label for="auth-password" id="auth-password-label">Password</label>
+    <input id="auth-password" type="password"
+           minlength="6" autocomplete="new-password" required>
+
+    <button type="submit" id="auth-submit">Sign up</button>
+    <p id="auth-message" role="status"></p>
+  </form>
+</dialog>
   <script>
   const languageButton = document.querySelector("#language-toggle");
   let currentLanguage = "en";
@@ -352,8 +383,7 @@ document
   const trialDialog = document.querySelector("#trial-dialog");
 const trialForm = document.querySelector("#trial-form");
 
-document.querySelector(".menu-try").addEventListener("click", (event) => {
-  event.preventDefault();
+document.querySelector('.hero .button[href="#start"]').addEventListener("click", (event) => {  event.preventDefault();
 
   const arabic = currentLanguage === "ar";
   trialDialog.dir = arabic ? "rtl" : "ltr";
@@ -505,6 +535,129 @@ document
 document
   .querySelector("#language-toggle")
   .addEventListener("click", updateDemoPrices);
+  (() => {
+  const dialog = document.querySelector("#auth-dialog");
+  const form = document.querySelector("#auth-form");
+  const signupTab = document.querySelector("#auth-signup-tab");
+  const loginTab = document.querySelector("#auth-login-tab");
+  let mode = "signup";
+
+  function updateAuth() {
+    const arabic = currentLanguage === "ar";
+    const signup = mode === "signup";
+
+    dialog.dir = arabic ? "rtl" : "ltr";
+
+    signupTab.textContent = arabic ? "إنشاء حساب" : "Sign up";
+    loginTab.textContent = arabic ? "تسجيل دخول" : "Log in";
+
+    signupTab.setAttribute("aria-pressed", String(signup));
+    loginTab.setAttribute("aria-pressed", String(!signup));
+
+    document.querySelector("#auth-title").textContent = arabic
+      ? (signup ? "إنشاء حساب تجريبي" : "تسجيل دخول تجريبي")
+      : (signup ? "Demo sign up" : "Demo log in");
+
+    document.querySelector("#auth-note").textContent = arabic
+      ? "للتجربة فقط. لا يُنشأ حساب ولا تُحفظ كلمة المرور. استخدمي بيانات وهمية وكلمة مرور من 6 أحرف على الأقل."
+      : "Demo only. No account or password is saved. Use fictional details and a password of at least 6 characters.";
+
+    document.querySelector("#auth-name-label").textContent =
+      arabic ? "الاسم الكامل" : "Full name";
+
+    document.querySelector("#auth-email-label").textContent =
+      arabic ? "البريد الإلكتروني" : "Email";
+
+    document.querySelector("#auth-password-label").textContent =
+      arabic ? "كلمة المرور التجريبية" : "Demo password";
+
+    document.querySelector("#auth-submit").textContent = signup
+      ? signupTab.textContent
+      : loginTab.textContent;
+
+    document.querySelector("#auth-close").setAttribute(
+      "aria-label", arabic ? "إغلاق" : "Close"
+    );
+
+    document.querySelector("#auth-name-group").hidden = !signup;
+    document.querySelector("#auth-name").required = signup;
+
+    document.querySelector("#auth-password").autocomplete =
+      signup ? "new-password" : "current-password";
+
+    document.querySelector("#auth-message").textContent = "";
+  }
+
+  document.querySelector(".menu-auth").addEventListener("click", (event) => {
+    event.preventDefault();
+    mode = "signup";
+    form.reset();
+    updateAuth();
+    dialog.showModal();
+  });
+
+  signupTab.addEventListener("click", () => {
+    mode = "signup";
+    form.reset();
+    updateAuth();
+  });
+
+  loginTab.addEventListener("click", () => {
+    mode = "login";
+    form.reset();
+    updateAuth();
+  });
+
+  document.querySelector("#auth-close").addEventListener("click", () => {
+    dialog.close();
+    form.reset();
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    document.querySelector("#auth-message").textContent =
+      currentLanguage === "ar"
+        ? "تمت تجربة النموذج بنجاح. لم يُنشأ حساب أو جلسة دخول فعلية."
+        : "Demo completed. No real account or login session was created.";
+
+    form.reset();
+  });
+
+  document.querySelector("#language-toggle")
+    .addEventListener("click", updateAuth);
+})();
+document.querySelector("#auth-dialog").addEventListener("click", (event) => {
+  const dialog = event.currentTarget;
+  const box = dialog.getBoundingClientRect();
+
+  const clickedOutside =
+    event.clientX < box.left ||
+    event.clientX > box.right ||
+    event.clientY < box.top ||
+    event.clientY > box.bottom;
+
+  if (event.target === dialog && clickedOutside) {
+    dialog.close();
+    document.querySelector("#auth-form").reset();
+  }
+});
+document.querySelector("#trial-dialog").addEventListener("click", (event) => {
+  const dialog = event.currentTarget;
+  const box = dialog.getBoundingClientRect();
+
+  const clickedOutside =
+    event.clientX < box.left ||
+    event.clientX > box.right ||
+    event.clientY < box.top ||
+    event.clientY > box.bottom;
+
+  if (event.target === dialog && clickedOutside) {
+    dialog.close();
+    document.querySelector("#trial-form").reset();
+    document.querySelector("#trial-message").textContent = "";
+  }
+});
 </script>
 </body>
 </html>

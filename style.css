@@ -844,3 +844,61 @@ html[dir="rtl"] .hero-text {
   height: 22px;
   object-fit: contain;
 }
+.auth-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e67e22;
+  border-radius: 8px;
+  background: #fff;
+  color: #a74e00;
+  font: inherit;
+  cursor: pointer;
+}
+
+.auth-tabs button[aria-pressed="true"] {
+  background: #e67e22;
+  color: #fff;
+}
+
+.auth-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.auth-form input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font: inherit;
+}
+
+#auth-name-group label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#auth-submit {
+  padding: 12px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: #e67e22;
+  color: #fff;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#auth-message {
+  margin: 0;
+  color: #26713c;
+}
